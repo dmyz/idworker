@@ -26,7 +26,6 @@ public class ResultPrinter {
 
     protected void print(Object object) {
         String json = JSON.toJSONString(object);
-        System.out.println(json);
         logger.info(json);
     }
 }

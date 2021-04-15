@@ -15,13 +15,19 @@
  */
 package com.imadcn.system.test;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.imadcn.framework.idworker.config.ApplicationConfiguration;
 import com.imadcn.framework.idworker.config.ZookeeperConfiguration;
 import com.imadcn.framework.idworker.generator.SnowflakeGenerator;
+import com.imadcn.framework.idworker.register.WorkerRegister;
 import com.imadcn.framework.idworker.register.zookeeper.ZookeeperWorkerRegister;
 import com.imadcn.framework.idworker.registry.zookeeper.ZookeeperRegistryCenter;
 
 public class ProcedureTest {
+    
+    private static Logger logger = LoggerFactory.getLogger(ProcedureTest.class);
 
     public static void main(String[] args) {
         try {
@@ -34,17 +40,17 @@ public class ProcedureTest {
             ApplicationConfiguration applicationConfiguration = new ApplicationConfiguration();
             applicationConfiguration.setGroup("manual_group");
 
-            ZookeeperWorkerRegister workerRegister = new ZookeeperWorkerRegister(registryCenter,
+            WorkerRegister workerRegister = new ZookeeperWorkerRegister(registryCenter,
                     applicationConfiguration);
 
             SnowflakeGenerator generator = new SnowflakeGenerator(workerRegister);
 
             generator.init();
-            System.out.println(generator.nextId());
+            logger.info("{}", generator.nextId());
             generator.close();
 
             generator.init();
-            System.out.println(generator.nextId());
+            logger.info("{}", generator.nextId());
             generator.close();
 
         } catch (Throwable e) {

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.imadcn.framework.idworker.algorithm.Snowflake;
 import com.imadcn.framework.idworker.exception.RegException;
 import com.imadcn.framework.idworker.register.GeneratorConnector;
-import com.imadcn.framework.idworker.register.zookeeper.ZookeeperWorkerRegister;
+import com.imadcn.framework.idworker.register.WorkerRegister;
 
 /**
  * Snowflake算法生成工具
@@ -29,7 +29,7 @@ public class SnowflakeGenerator implements IdGenerator, GeneratorConnector {
     /**
      * snowflake 注册
      */
-    private ZookeeperWorkerRegister register;
+    private WorkerRegister register;
     /**
      * 是否正在工作
      */
@@ -39,7 +39,7 @@ public class SnowflakeGenerator implements IdGenerator, GeneratorConnector {
 
     private volatile boolean connecting = false;
 
-    public SnowflakeGenerator(ZookeeperWorkerRegister register) {
+    public SnowflakeGenerator(WorkerRegister register) {
         this.register = register;
     }
 
