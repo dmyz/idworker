@@ -13,23 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.imadcn.framework.idworker.exception;
+package com.imadcn.framework.idworker.toolkit.json;
 
 /**
- * 注册中心异常.
- * 
+ * JSON工具集定义
  * @author imadcn
- * @since 1.0.0
+ * @since 2.0.0
  */
-public final class RegException extends RuntimeException {
-
-    private static final long serialVersionUID = -6417179023552012152L;
-
-    public RegException(final String errorMessage, final Object... args) {
-        super(String.format(errorMessage, args));
-    }
-
-    public RegException(final Exception cause) {
-        super(cause);
-    }
+public interface JsonSerialier {
+    
+    /**
+     * 将一个对象，转换为JSON字符串
+     * @param object 对象
+     * @return JSON字符串
+     */
+    String toJsonString(Object object);
+    
+    /**
+     * 将一串JSON字符串，转换为一个对象
+     * @param <T> 需要转换成的对象类型
+     * @param json JSON字符串
+     * @param clazz 转换对象类，类型
+     * @return
+     */
+    <T> T parseObject(String json, Class<T> clazz);
 }

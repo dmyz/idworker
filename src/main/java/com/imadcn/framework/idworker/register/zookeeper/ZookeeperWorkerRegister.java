@@ -1,3 +1,18 @@
+/*
+ * Copyright 2013-2021 imadcn.
+ *  
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *  
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.imadcn.framework.idworker.register.zookeeper;
 
 import java.io.File;
@@ -21,12 +36,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.imadcn.framework.idworker.config.ApplicationConfiguration;
 import com.imadcn.framework.idworker.exception.RegException;
 import com.imadcn.framework.idworker.register.WorkerRegister;
 import com.imadcn.framework.idworker.registry.CoordinatorRegistryCenter;
+import com.imadcn.framework.idworker.toolkit.json.JsonSerialier;
 import com.imadcn.framework.idworker.util.HostUtils;
 
 /**
@@ -62,6 +76,11 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
      * zk节点是否持久化存储
      */
     private boolean durable;
+    
+    /**
+     * JSON序列化工具
+     */
+    private JsonSerialier jsonSerialier;
 
     public ZookeeperWorkerRegister(CoordinatorRegistryCenter regCenter,
             ApplicationConfiguration applicationConfiguration) {
@@ -326,8 +345,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
      * @return 节点信息
      */
     private NodeInfo createNodeInfoFromJsonStr(String jsonStr) {
-        NodeInfo nodeInfo = JSON.parseObject(jsonStr, NodeInfo.class);
-        return nodeInfo;
+        return jsonSerialier.parseObject(jsonStr, NodeInfo.class);
     }
 
     /**
@@ -337,8 +355,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
      * @return json字符串
      */
     private String jsonizeNodeInfo(NodeInfo nodeInfo) {
-        String dateFormat = "yyyy-MM-dd HH:mm:ss";
-        return JSON.toJSONStringWithDateFormat(nodeInfo, dateFormat, SerializerFeature.WriteDateUseDateFormat);
+        return jsonSerialier.toJsonString(nodeInfo);
     }
 
     /**
@@ -362,5 +379,9 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
      */
     private String genNodeId() {
         return UUID.randomUUID().toString().replace("-", "").toLowerCase();
+    }
+
+    public void setJsonSerialier(JsonSerialier jsonSerialier) {
+        this.jsonSerialier = jsonSerialier;
     }
 }

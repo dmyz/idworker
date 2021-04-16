@@ -13,23 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.imadcn.framework.idworker.exception;
+package com.imadcn.framework.idworker.toolkit.json;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 /**
- * 注册中心异常.
- * 
+ * FastJSON序列化实现
  * @author imadcn
- * @since 1.0.0
+ * @since 2.0.0
  */
-public final class RegException extends RuntimeException {
+public class FastJsonSerializer implements JsonSerialier {
 
-    private static final long serialVersionUID = -6417179023552012152L;
-
-    public RegException(final String errorMessage, final Object... args) {
-        super(String.format(errorMessage, args));
+    @Override
+    public String toJsonString(Object object) {
+        String dateFormat = "yyyy-MM-dd HH:mm:ss";
+        return JSON.toJSONStringWithDateFormat(object, dateFormat, SerializerFeature.WriteDateUseDateFormat);
     }
 
-    public RegException(final Exception cause) {
-        super(cause);
+    @Override
+    public <T> T parseObject(String json, Class<T> clazz) {
+        return JSON.parseObject(json, clazz);
     }
+
 }
