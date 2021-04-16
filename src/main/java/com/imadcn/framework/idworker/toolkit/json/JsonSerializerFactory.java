@@ -13,20 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.imadcn.system.test.idworker;
+package com.imadcn.framework.idworker.toolkit.json;
 
-import org.junit.Test;
-
-import com.imadcn.framework.idworker.algorithm.CompressUUID;
-import com.imadcn.system.test.ResultPrinter;
-
-public class CompressUUIDTest extends ResultPrinter {
-
-    @Test
-    public void testCompressUuid() {
-        for (int i = 0; i < 5; i++) {
-            Object o = CompressUUID.uuid22();
-            print(o);
-        }
+/**
+ * JSON 序列化工厂
+ * @author imadcn
+ * @since 2.0.0
+ */
+public class JsonSerializerFactory {
+    
+    private JsonSerializerFactory() {}
+    
+    /**
+     * 创建默认JSON序列化工具
+     * @return 默认使用FastJson作为序列化工具
+     */
+    public static JsonSerialier createDefault() {
+        return new FastJsonSerializer();
     }
 }

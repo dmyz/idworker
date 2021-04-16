@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2018 imadcn Group.
+ * Copyright 2013-2021 imadcn.
  *  
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,14 +18,14 @@ package com.imadcn.system.test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSON;
+import com.imadcn.framework.idworker.toolkit.json.JsonSerializerFactory;
 
 public class ResultPrinter {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     protected void print(Object object) {
-        String json = JSON.toJSONString(object);
+        String json = JsonSerializerFactory.createDefault().toJsonString(object);
         logger.info(json);
     }
 }

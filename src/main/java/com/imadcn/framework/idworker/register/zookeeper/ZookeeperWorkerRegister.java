@@ -41,6 +41,7 @@ import com.imadcn.framework.idworker.exception.RegException;
 import com.imadcn.framework.idworker.register.WorkerRegister;
 import com.imadcn.framework.idworker.registry.CoordinatorRegistryCenter;
 import com.imadcn.framework.idworker.toolkit.json.JsonSerialier;
+import com.imadcn.framework.idworker.toolkit.json.JsonSerializerFactory;
 import com.imadcn.framework.idworker.util.HostUtils;
 
 /**
@@ -80,7 +81,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
     /**
      * JSON序列化工具
      */
-    private JsonSerialier jsonSerialier;
+    private JsonSerialier jsonSerialier = JsonSerializerFactory.createDefault();
 
     public ZookeeperWorkerRegister(CoordinatorRegistryCenter regCenter,
             ApplicationConfiguration applicationConfiguration) {
