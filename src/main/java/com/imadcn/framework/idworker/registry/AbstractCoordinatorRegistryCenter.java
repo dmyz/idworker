@@ -10,31 +10,19 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package com.imadcn.framework.idworker.toolkit.json;
+package com.imadcn.framework.idworker.registry;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * JSON工具集定义
+ * AbstractCoordinatorRegistryCenter
  * 
  * @author imadcn
  * @since 2.0.0
  */
-public interface JsonSerialier {
+public abstract class AbstractCoordinatorRegistryCenter implements CoordinatorRegistryCenter {
 
-    /**
-     * 将一个对象，转换为JSON字符串
-     * 
-     * @param object 对象
-     * @return JSON字符串
-     */
-    String toJsonString(Object object);
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    /**
-     * 将一串JSON字符串，转换为一个对象
-     * 
-     * @param <T> 需要转换成的对象类型
-     * @param json JSON字符串
-     * @param clazz 转换对象类，类型
-     * @return
-     */
-    <T> T parseObject(String json, Class<T> clazz);
 }

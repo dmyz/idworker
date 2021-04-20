@@ -49,6 +49,7 @@
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
 
         <dep.springframework.version>5.2.14.RELEASE</dep.springframework.version>
+        <dep.spring-data-redis.version>2.3.9.RELEASE</dep.spring-data-redis.version>
         <dep.curator.version>4.3.0</dep.curator.version>
         <dep.fastjson.version>1.2.76</dep.fastjson.version>
         <dep.jackson.version>2.12.3</dep.jackson.version>
@@ -84,22 +85,34 @@
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
             <version>${dep.curator.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-client</artifactId>
             <version>${dep.curator.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
             <version>${dep.curator.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-test</artifactId>
             <version>${dep.curator.version}</version>
+            <optional>true</optional>
             <scope>test</scope>
+        </dependency>
+
+        <!-- spring-data-redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${dep.spring-data-redis.version}</version>
+            <optional>true</optional>
         </dependency>
 
         <!-- fastjson -->

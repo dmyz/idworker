@@ -1,17 +1,14 @@
 /*
  * Copyright 2013-2021 imadcn.
- *  
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *  
- *      http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 package com.imadcn.framework.idworker.spring.schema.parser;
 
@@ -54,7 +51,7 @@ public class RegistryBeanDefinitionParser extends BaseBeanDefinitionParser {
             // snowflake 生成策略
             if (generatorClass.isAssignableFrom(SnowflakeGenerator.class)) {
                 result.addConstructorArgValue(
-                        GeneratorRegisteryBuilder.buildWorkerNodeRegisterBeanDefinition(element, parserContext));
+                    GeneratorRegisteryBuilder.buildWorkerNodeRegisterBeanDefinition(element, parserContext));
                 // result.addPropertyValue("lowConcurrency",
                 // getAttributeValue(element,
                 // GeneratorBeanDefinitionTag.LOW_CONCURRENCY));
@@ -68,24 +65,24 @@ public class RegistryBeanDefinitionParser extends BaseBeanDefinitionParser {
     /**
      * zookeeper 配置解析
      * 
-     * @param element       element
+     * @param element element
      * @param parserContext parserContext
      * @return
      */
     private AbstractBeanDefinition buildZookeeperConfigurationBeanDefinition(final Element element,
-            final ParserContext parserContext) {
+        final ParserContext parserContext) {
         BeanDefinitionBuilder result = BeanDefinitionBuilder.rootBeanDefinition(ZookeeperConfiguration.class);
         addPropertyValueIfNotEmpty(ZookeeperBeanDefinitionTag.SERVER_LISTS, "serverLists", element, result);
         addPropertyValueIfNotEmpty(ZookeeperBeanDefinitionTag.NAMESPACE, "namespace", element, result);
         addPropertyValueIfNotEmpty(ZookeeperBeanDefinitionTag.BASE_SLEEP_TIME_MS, "baseSleepTimeMilliseconds", element,
-                result);
+            result);
         addPropertyValueIfNotEmpty(ZookeeperBeanDefinitionTag.MAX_SLEEP_TIME_MS, "maxSleepTimeMilliseconds", element,
-                result);
+            result);
         addPropertyValueIfNotEmpty(ZookeeperBeanDefinitionTag.MAX_RETRIES, "maxRetries", element, result);
         addPropertyValueIfNotEmpty(ZookeeperBeanDefinitionTag.SESSION_TIMEOUT_MS, "sessionTimeoutMilliseconds", element,
-                result);
+            result);
         addPropertyValueIfNotEmpty(ZookeeperBeanDefinitionTag.CONNECTION_TIMEOUT_MS, "connectionTimeoutMilliseconds",
-                element, result);
+            element, result);
         addPropertyValueIfNotEmpty(ZookeeperBeanDefinitionTag.DIGEST, "digest", element, result);
         return result.getBeanDefinition();
     }

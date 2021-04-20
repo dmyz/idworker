@@ -1,17 +1,14 @@
 /*
  * Copyright 2013-2021 imadcn.
- *  
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *  
- *      http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 package com.imadcn.framework.idworker.spring.schema.parser;
 
@@ -40,10 +37,10 @@ public abstract class BaseBeanDefinitionParser extends AbstractBeanDefinitionPar
     /**
      * 设置Bean Id
      * 
-     * @param result        result
-     * @param clazz         clazz
+     * @param result result
+     * @param clazz clazz
      * @param parserContext parserContext
-     * @param element       element
+     * @param element element
      */
     // protected void setBeanId(BeanDefinitionBuilder result, Class<?> clazz,
     // ParserContext parserContext, Element element) {
@@ -54,9 +51,9 @@ public abstract class BaseBeanDefinitionParser extends AbstractBeanDefinitionPar
     /**
      * 获取BeanId
      * 
-     * @param clazz         clazz
+     * @param clazz clazz
      * @param parserContext parserContext
-     * @param element       element
+     * @param element element
      * @return BeanId
      */
     // protected String getBeanId(Class<?> clazz, ParserContext parserContext,
@@ -85,12 +82,12 @@ public abstract class BaseBeanDefinitionParser extends AbstractBeanDefinitionPar
      * 设置Properties
      * 
      * @param attributeName attributeName
-     * @param propertyName  propertyName
-     * @param element       element
-     * @param factory       factory
+     * @param propertyName propertyName
+     * @param element element
+     * @param factory factory
      */
     protected static void addPropertyValueIfNotEmpty(final String attributeName, final String propertyName,
-            final Element element, final BeanDefinitionBuilder factory) {
+        final Element element, final BeanDefinitionBuilder factory) {
         String attributeValue = element.getAttribute(attributeName);
         if (attributeValue != null && !attributeValue.isEmpty()) {
             factory.addPropertyValue(propertyName, attributeValue);
@@ -100,7 +97,7 @@ public abstract class BaseBeanDefinitionParser extends AbstractBeanDefinitionPar
     /**
      * 获取attribute值
      * 
-     * @param element       element
+     * @param element element
      * @param attributeName attributeName
      * @since 1.2.0
      * @return attribute值
